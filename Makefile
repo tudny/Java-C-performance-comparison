@@ -1,42 +1,53 @@
+# Source files for algorithm implementation
+SRC = src
 JAVA_FILE = com/github/tudny/algo/ShortestPath
-C_FILE = src_c/shortest_path
-OCAML_FILE = src_ocaml/shortest_path
+C_FILE = $(SRC)/c/shortest_path
 
+# Source of test generator file
 GEN_FILE = gen/gen
 
-.PHONY : all runJava runC runOcaml gen
+.PHONY : all runJava runJavaXint runC runOcaml gen
 
-all : $(JAVA_FILE).class $(C_FILE) $(OCAML_FILE) $(GEN_FILE) Makefile
+all : $(SRC)/java/$(JAVA_FILE).class $(C_FILE) $(GEN_FILE) Makefile
 
-$(JAVA_FILE).class : $(JAVA_FILE).java
-	javac $(JAVA_FILE).java
+# Compiling Java solution
+$(SRC)/java/$(JAVA_FILE).class : $(SRC)/java/$(JAVA_FILE).java
+	( cd $(SRC)/java && javac $(JAVA_FILE).java )
 
-runJava : $(JAVA_FILE).class
-	java $(JAVA_FILE)
+# Running solution in Java
+runJava : $(SRC)/java/$(JAVA_FILE).class
+	( cd $(SRC)/java && java $(JAVA_FILE) )
 
-runJavaXint: $(JAVA_FILE).class
-	java $(JAVA_FILE) -Xint
+# Running solution in Java with -Xint flag
+runJavaXint: $(SRC)/java/$(JAVA_FILE).class
+	( cd $(SRC)/java && java $(JAVA_FILE) -Xint )
 
+# Compiling C solution
 $(C_FILE) : $(C_FILE).c
-	gcc -Wall -Wextra -O2 -o $(C_FILE) $(C_FILE).c
+	gcc -Wall -Wextra -o $(C_FILE) $(C_FILE).c
 
+# Running solution in C 
 runC : $(C_FILE)
 	./$(C_FILE)
 
-$(OCAML_FILE) : $(OCAML_FILE).ml
-	ocamlopt -o $(OCAML_FILE) $(OCAML_FILE).ml
+# Compiling C O2 solution
+$(C_FILE)_O : $(C_FILE).c
+	gcc -Wall -Wextra -O2 -o $(C_FILE)_O $(C_FILE).c
 
-runOcaml : $(OCAML_FILE)
-	./$(OCAML_FILE)
+# Running solution in C 
+runC_O : $(C_FILE)_O
+	./$(C_FILE)_O
 
+# Cleaning whole directory from all Java, C and OCaml compilation files.
 clean :
 	@find . -name "*.class" -type f -delete
-	@rm -f $(C_FILE)
-	@rm -f $(OCAML_FILE) $(OCAML_FILE).cmi $(OCAML_FILE).cmx $(OCAML_FILE).o
+	@rm -f $(C_FILE) $(C_FILE)_O
 	@rm -f gen/gen
 
+# Compiling test generator
 $(GEN_FILE) : $(GEN_FILE).c
 	gcc -Wextra -Wall -o $(GEN_FILE) $(GEN_FILE).c
 
+# Running test generator
 runGen : $(GEN_FILE)
 	./$(GEN_FILE)
