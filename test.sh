@@ -53,7 +53,7 @@ time make runC < "${test}".in > c_"${test}".out
 echo -e ""
 
 # Testing C O2
-echo -e "C time"
+echo -e "C O2 time"
 time make runC_O < "${test}".in > c_o_"${test}".out
 echo -e ""
 
