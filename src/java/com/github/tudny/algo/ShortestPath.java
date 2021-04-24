@@ -51,7 +51,7 @@ public class ShortestPath {
      * Implementation of the Floyd-Warshall algorithm searching shortest paths in graph between all nodes.
      * Complexity: O(N^3) where N is the number of nodes in processed graph.
      * @param graph Graph to be processed by Floyd Warshall algorithm.
-     * @return Two-dimensional array storing information about shortest paths between all nodes in graph.
+     * @return Two-dimensional array storing information about shortest paths between all two nodes in graph.
      */
     public static int[][] algorithmFloydWarshall(Graph graph) {
         int N = graph.getN();
