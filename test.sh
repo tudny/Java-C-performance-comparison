@@ -1,4 +1,5 @@
 # Script testing speed of a few programming language.
+# author: Aleksander 'tudny' Tudruj
 # This case Java vs C
 # Usage: ./path/to/script/test.sh <temporary_test_name> <test_seed>  
 # First of all it generates test with name <temporary_test_name> with
