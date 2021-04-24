@@ -1,10 +1,10 @@
 
 (* Graph with size and matrix of distances. *)
 type graph = { size : int; distances : int array array }
-;;
+
 
 let inf = 1000000009
-;;
+
 
 let makeGraph n = 
   let dist = Array.make_matrix n n inf
@@ -13,20 +13,20 @@ let makeGraph n =
     Array.set (Array.get dist i) i 0
   done;
   { size = n;  distances = dist }
-;;
+
 
 let getEdge { size = size; distances = dist } beg en = 
   Array.get (Array.get dist beg) en
-;;
+
 
 let addEdge ({ size = size; distances = dist } as g) beg en len =
   let actualLen = getEdge g beg en in
   if actualLen > len then
     Array.set (Array.get dist beg) en len
-;;
+
 
 let getN { size = size } = size
-;;
+
 
 let readGraph () = 
   let n = ref 0 in
@@ -51,7 +51,7 @@ let readGraph () =
 
     addEdge g a b l
   done; g
-;;
+
 
 let algorithmFloydWarshall g = 
   let n = getN g in
@@ -76,7 +76,7 @@ let algorithmFloydWarshall g =
   done;
 
   shortest
-;;
+
 
 let answerQuery shortest = 
   let q = ref 0 in
@@ -94,7 +94,7 @@ let answerQuery shortest =
     else
       Printf.printf "%d\n" anwser
   done
-;;
+
 
 let main () = 
   let g = readGraph () in
