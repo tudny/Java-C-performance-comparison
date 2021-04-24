@@ -64,3 +64,5 @@ rm "${test}".in
 
 # Removing compilation files
 make clean
+
+# END
