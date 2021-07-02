@@ -10,8 +10,8 @@ Wersja C: `gcc version 9.3.0 (Ubuntu 9.3.0-17ubuntu1~20.04)`
 
 Wyniki dla testu wygenerowanego generatorem (seed = 42 dla podanego środowiska i kompilatora): `|V| = 1463`, `|E| = 1615`
 
-Java (Just In Time): `0m9.545s`
-Java (-Xint): `0m9.773s`
+* Java (Just In Time): `0m9.545s`
+* Java (-Xint): `0m9.773s`
 
-C(-O2): `0m2.931s`
-C: `0m12.933s`
+* C(-O2): `0m2.931s`
+* C: `0m12.933s`
