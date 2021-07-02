@@ -12,6 +12,5 @@ Wyniki dla testu wygenerowanego generatorem (seed = 42 dla podanego środowiska 
 
 * Java (Just In Time): `0m9.545s`
 * Java (-Xint): `0m9.773s`
-
 * C(-O2): `0m2.931s`
 * C: `0m12.933s`
